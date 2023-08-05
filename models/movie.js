@@ -10,8 +10,12 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  year: {
+  duration: {
     type: Number,
+    required: true,
+  },
+  year: {
+    type: String,
     required: true,
   },
   description: {
@@ -61,4 +65,4 @@ const movieSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('user', movieSchema);
+module.exports = mongoose.model('movie', movieSchema);
