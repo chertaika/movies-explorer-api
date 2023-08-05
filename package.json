@@ -1,5 +1,6 @@
 {
   "name": "movies-explorer-api",
+  "author": "Ekaterina Iurkova",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +14,6 @@
     "url": "git+https://github.com/chertaika/movies-explorer-api.git"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/chertaika/movies-explorer-api/issues"
