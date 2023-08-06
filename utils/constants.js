@@ -18,6 +18,8 @@ const INVALID_AUTH_DATA_ERROR_MESSAGE = 'Неправильные почта и�
 const UNAUTHORIZED_ERROR_MESSAGE = 'Необходима авторизация';
 const NO_RIGHTS_TO_DELETE_ERROR_MESSAGE = 'Нет прав на удаление этого фильма';
 const SERVER_ERROR_MESSAGE = 'На сервере произошла ошибка';
+const INCORRECT_EMAIL = 'Некорректный email';
+const INCORRECT_URL = 'Некорректная ссылка';
 
 module.exports = {
   SUCCESS_CODE_200,
@@ -40,4 +42,6 @@ module.exports = {
   INCORRECT_DATA_MESSAGE,
   MOVIE_NOT_FOUND_MESSAGE,
   NO_RIGHTS_TO_DELETE_ERROR_MESSAGE,
+  INCORRECT_EMAIL,
+  INCORRECT_URL,
 };

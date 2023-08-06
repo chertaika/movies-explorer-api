@@ -68,6 +68,9 @@ module.exports.updateUserInfo = async (req, res, next) => {
     checkData(user);
     return res.send(user);
   } catch (error) {
+    if (error.code === 11000) {
+      return next(new ConflictingRequestError(NOT_UNIQUE_EMAIL_ERROR_MESSAGE));
+    }
     if (error instanceof ValidationError) {
       return next(new BadRequestError(INCORRECT_UPDATE_USER_DATA_MESSAGE));
     }

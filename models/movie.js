@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { URL_REGEX } = require('../utils/validation');
+const { INCORRECT_URL } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -27,7 +28,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (url) => URL_REGEX.test(url),
-      message: 'Необходимо ввести URL',
+      message: INCORRECT_URL,
     },
   },
   trailerLink: {
@@ -35,7 +36,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (url) => URL_REGEX.test(url),
-      message: 'Необходимо ввести URL',
+      message: INCORRECT_URL,
     },
   },
   thumbnail: {
@@ -43,7 +44,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (url) => URL_REGEX.test(url),
-      message: 'Необходимо ввести URL',
+      message: INCORRECT_URL,
     },
   },
   owner: {
