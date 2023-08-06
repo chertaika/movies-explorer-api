@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const rateLimit = require('express-rate-limit');
+
 const cors = require('cors');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
@@ -9,6 +9,7 @@ const router = require('./routes/index');
 const { DB_URI, PORT } = require('./utils/config');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const limiter = require('./middlewares/rateLimiter');
 
 (async () => {
   try {
@@ -21,19 +22,13 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 
-const allowedCors = ['http://localhost:3000'];
+const allowedCors = ['https://chertaika.nomoreparties.co', 'http://localhost:3000'];
 
 const corsOptions = {
   origin: allowedCors,
   optionsSuccessStatus: 200,
   credentials: true,
 };
-
-const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 минута
-  max: 100,
-  message: 'Превышено количество запросов на сервер. Пожалуйста, повторите позже',
-});
 
 app.use(cors(corsOptions));
 

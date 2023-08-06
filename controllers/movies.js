@@ -14,7 +14,7 @@ const checkData = (data) => {
   if (!data) throw new NotFoundError(MOVIE_NOT_FOUND_MESSAGE);
 };
 
-module.exports.getFavouriteMovies = async (req, res, next) => {
+module.exports.getMovies = async (req, res, next) => {
   try {
     const userId = req.user._id;
     const movies = await Movie.find({ owner: userId }).populate('owner');
@@ -27,7 +27,7 @@ module.exports.getFavouriteMovies = async (req, res, next) => {
   }
 };
 
-module.exports.addFavouriteMovie = async (req, res, next) => {
+module.exports.addMovie = async (req, res, next) => {
   try {
     const owner = req.user._id;
     const {
@@ -67,10 +67,10 @@ module.exports.addFavouriteMovie = async (req, res, next) => {
   }
 };
 
-module.exports.deleteFavouriteMovieById = async (req, res, next) => {
+module.exports.deleteMovieById = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const movie = await Movie.findById(id);
+    const { _id: movieId } = req.params;
+    const movie = await Movie.findById(movieId);
     checkData(movie);
 
     const ownerId = movie.owner.valueOf();

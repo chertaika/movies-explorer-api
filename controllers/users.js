@@ -14,7 +14,7 @@ const {
 const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 const ConflictingRequestError = require('../errors/ConflictingRequestError');
-const { NODE_ENV, JWT_SECRET } = require('../utils/config');
+const { SECRET_KEY } = require('../utils/config');
 
 const checkData = (data) => {
   if (!data) throw new NotFoundError(USER_NOT_FOUND_MESSAGE);
@@ -34,7 +34,7 @@ module.exports.getCurrentUser = async (req, res, next) => {
   }
 };
 
-module.exports.createUser = async (req, res, next) => {
+module.exports.registerUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
     const hash = await bcrypt.hash(password, 10);
@@ -81,7 +81,7 @@ module.exports.login = async (req, res, next) => {
     const { _id: userId } = await User.findUserByCredentials(email, password);
     const token = jwt.sign(
       { _id: userId },
-      NODE_ENV === 'production' ? JWT_SECRET : 'super-puper-duper-dev-secret',
+      SECRET_KEY,
       { expiresIn: '7d' },
     );
     return res.cookie('jwt', token, {
